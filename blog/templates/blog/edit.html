@@ -1,0 +1,55 @@
+{% extends 'blog/admin-panel-layout.html' %}
+{% load static %}
+{% block main %}
+<br><br><br><br>
+
+{% if type == 'article' and post.id != None %}    
+<form action="{% url 'edit' post.id 'article' %}" method="POST">
+    {% csrf_token %}
+<div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
+    <div class="col-sm-4 col-md-8">
+        <div class="thumbnail">
+            <img src="{% static 'images/aaron-burden-cEukkv42O40-unsplash.jpg' %}" alt="{{ post.title }}">
+
+            <div class="caption">
+                
+               <strong><textarea cols="117" rows="2" name="title" id="title" >{{ post.title }}</textarea></strong>
+                <strong><textarea cols="117" rows="20" class="form-control form-control-lg " name="details" id="details">{{post.details}}</textarea></strong>
+                <br><br><span style="font-size: larger;">by: Muhammad Sufyan
+                    {{ post.date }}</span>
+                <br><br>
+                <button type="submit" class="btn btn-primary"><strong> Save! </strong></button>
+                <button type="reset" class="btn btn-danger"><strong> Discard! </strong></button>    
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+{% elif type == "lecture" and post.id != None %}
+<form action="{% url 'edit' post.id 'lecture' %}" method="POST">
+    {% csrf_token %}
+    <div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
+        <div class="col-sm-4 col-md-8">
+            <div class="thumbnail">
+                <video width="100%" controls>
+                    <source src="{{ post.lecture.url }}" type="video/mp4">
+                    Your browser does not support HTML video.
+                </video>
+        
+                <div class="caption">
+                    
+                   <strong><textarea cols="117" rows="2" name="title" id="title" >{{ post.title }}</textarea></strong>
+                    <strong><textarea cols="117" rows="20" class="form-control form-control-lg " name="details" id="details">{{post.description}}</textarea></strong>
+                    <br><br><span style="font-size: larger;">by: Muhammad Sufyan
+                        {{ post.date }}</span>
+                    <br><br>
+                    <button type="submit" class="btn btn-primary"><strong> Save! </strong></button>
+                    <button type="reset" class="btn btn-danger"><strong> Discard! </strong></button>    
+                </div>
+            </div>
+        </div>
+    </div>
+</form>   
+{% endif %}
+
+{% endblock %}

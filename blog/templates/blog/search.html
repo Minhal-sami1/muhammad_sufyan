@@ -1,0 +1,18 @@
+{% extends 'blog/layout.html' %}
+{% load static %}
+
+{% block other %}
+    <h1 style="text-align: center;">All Posts</h1>
+    <br><br>
+    {% for i in lst %}
+    <br>
+    {% if i.details %}
+        <h2><a href="{% url 'apv' i.id 'article' %}" style="text-align: center; color: blue;">{{i.title}}: Article</a></h2>
+    {% elif i.description %}
+        <h2><a href="{% url 'apv' i.id 'lecture' %}" class="text-dark" style="text-align: center; color: blue;">{{i.title}}: Lecture</a></h2>
+    {% else %}
+    <h1>Not Found!</h1>
+    {% endif %}
+    {% endfor %}
+
+{% endblock %}    

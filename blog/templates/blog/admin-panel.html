@@ -1,0 +1,82 @@
+{% extends 'blog/admin-panel-layout.html' %}
+
+{% block main %}    
+
+<h2 class="sub-header" style="margin-top: 68px;">All Posts</h2>
+<div class="table-responsive">
+
+    {% if posts %}    
+    <table class="table table-striped">
+        
+        <thead>
+            <tr>
+                <th>Header</th>
+                <th>Edit</th>
+                <th>Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <h1><strong>Articles/تحریرات</strong></h1>
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.title }}</td>
+                <td><a type="button" href="{% url 'edit' post.id 'article' %}" class="btn btn-warning">Edit</a></td>
+                <td><a href="{% url 'delete' post.id 'article' %}" type="button" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% if postl %}
+<div class="table-responsive">
+    <table class="table table-striped">
+        
+        <thead>
+            <tr>
+                <th>Header</th>
+                <th>Edit</th>
+                <th>Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <h1><strong>Lectures/بیانات</strong></h1>
+            {% for post in postl %}
+            <tr>
+                <td>{{ post.title }}</td>
+                <td><a type="button" href="{% url 'edit' post.id 'lecture' %}" class="btn btn-warning">Edit</a></td>
+                <td><a href="{% url 'delete' post.id 'lecture' %}" type="button" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>    
+{% endif %}
+
+{% if postg %}
+<div class="table-responsive">
+    <table class="table table-striped">
+        
+        <thead>
+            <tr>
+                <th>Header</th>
+                <th>Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <h1><strong>Gallery/تصاویر</strong></h1>
+            {% for post in postg %}
+            <tr>
+                <td>{{ post.title }}</td>
+                <td><a href="{% url 'delete' post.id 'gallery' %}" type="button" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>        
+{% endif %}
+
+{% endblock %}

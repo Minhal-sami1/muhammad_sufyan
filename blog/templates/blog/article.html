@@ -1,0 +1,37 @@
+{% extends 'blog/layout.html' %}
+
+{% block cards %}    
+{% load static %}
+<div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
+    <div class="col-sm-4 col-md-8">
+        <div class="thumbnail">
+            <img src="{% static 'images/aaron-burden-cEukkv42O40-unsplash.jpg' %}" alt="{{post.title}}">
+
+            <div class="caption">
+                <h3> {{post.title}} </h3>
+                <p style="text-align: justify;">{{ post.details }}<br><br>
+                    <span style="font-size: larger;">by: Muhamamd-sufyan
+                        {{post.date}}</span></p>
+                <p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block other %}
+<div class="col-lg-4 col-md-4 col-sm-12  col-xs-12" style=" margin-top:10px">
+    <div class="list-group">
+        <a href="{% url 'main' %}" class="list-group-item active">
+            Categories
+        </a>
+        <a href="{% url 'main' %}" class="list-group-item">
+            <span class="badge">{{counta}}</span>
+            Articles/تحریرات</a>
+        <a href="{% url 'lv' %}" class="list-group-item">
+            <span class="badge">{{countl}}</span>
+            Lectures/بیانات</a>
+        <a href="{% url 'gv' %}" class="list-group-item">
+            <span class="badge">{{countg}}</span>
+            Gallery/تصاویر</a>
+    </div>
+</div>
+{% endblock %}

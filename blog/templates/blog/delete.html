@@ -1,0 +1,41 @@
+{% extends 'blog/admin-panel-layout.html' %}
+{% load static %}
+{% block main %}
+<br><br><br><br>
+
+{% if type == "article" and post.id != None %}
+<form action="{% url 'delete' post.id 'article' %}" method="POST">
+    {% csrf_token %}
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        <h1>
+        Are you sure you want to delete <strong>{{ post.title }}</strong>?
+        <br><br>
+        <button type="submit" class="btn btn-danger"><strong> Delete! </strong></button> 
+        </h1>
+    </div>
+</form>
+{% elif type == "lecture" and post.id != None %}
+<form action="{% url 'delete' post.id 'lecture' %}" method="POST">
+    {% csrf_token %}
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        <h1>
+        Are you sure you want to delete <strong>{{ post.title }}</strong>?
+        <br><br>
+        <button type="submit" class="btn btn-danger"><strong> Delete! </strong></button> 
+        </h1>
+    </div>
+</form>
+{% elif type == "gallery" and post.id != None %}
+<form action="{% url 'delete' post.id 'gallery' %}" method="POST">
+    {% csrf_token %}
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        <h1>
+        Are you sure you want to delete <strong>{{ post.title }}</strong>?
+        <br><br>
+        <button type="submit" class="btn btn-danger"><strong> Delete! </strong></button>
+        </h1> 
+    </div>
+</form>
+{% endif %}
+<br><br><br><br><br><br><br>
+{% endblock %}

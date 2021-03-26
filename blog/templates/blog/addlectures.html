@@ -1,0 +1,35 @@
+{% extends 'blog/admin-panel-layout.html' %}
+
+{% block main %}
+
+{% if request.user.is_authenticated %}
+
+{% if error %}
+<div class="alert alert-danger" role="alert">
+  {{ error }}
+</div>
+{% endif %}
+<form style="margin-top: 50px;" action="{% url 'addl' %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="title" style="font-size: large;">Header of Lecture</label>
+    {{ form.title }}
+    <br>
+  </div>
+  
+  <div class="form-group">
+    <label for="lecture" style="font-size: large;">Lecture video</label>
+    {{ form.lecture }}
+    <p class="help-block">It is important! to choose video only</p>
+    <br>
+  </div>
+
+  <label for="description" style="font-size: large;">Lecture Description</label>
+  {{ form.description }}
+ 
+  <button style="margin-top: 10px;" type="submit" class="btn btn-primary" style="padding: 10px 10px;">Submit</button>
+</form>
+<br><br>  
+{% endif %}
+
+{% endblock %}

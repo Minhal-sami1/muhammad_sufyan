@@ -1,0 +1,23 @@
+{% extends 'blog/admin-panel-layout.html' %}
+
+{% block main %}
+
+{% if request.user.is_authenticated %}
+    
+<div class="form-group text-center" style="margin-top: 50px;">
+    <br>
+    <form action="{% url 'addi' %}" method="POST" enctype="multipart/form-data" style="margin-top: 50px;">
+        {% csrf_token %}
+        <p class="help-block text-center">Upload Image for Gallery/تصاویر Page</p>
+        <label class="text-center" for="title" style="font-size: large;">Title</label>
+        {{ form.title }}
+        <br><br>
+        <label class="text-center" for="picture" style="font-size: large;">image</label>
+        {{form.picture}}
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
+        <br><br><br><br>
+    </form>
+</div>
+
+{% endif %}    
+{% endblock %}    
