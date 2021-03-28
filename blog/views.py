@@ -117,8 +117,6 @@ def delete_post(request, id, type):
         if request.method == "POST":
             if type == "article":
                 post = Articles.objects.filter(id = id).first()
-                if post.picture:
-                    post.picture.delete()
                 post.delete()
                 return HttpResponseRedirect(reverse("all_post"))   
             if type == "lecture":
